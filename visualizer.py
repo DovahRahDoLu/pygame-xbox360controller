@@ -28,6 +28,7 @@ clock = pygame.time.Clock()
 
 # make a controller (should this be in the game loop?)
 controller = XBox360Controller(0)
+controller2 = XBox360Controller(1)
 
 def display_text(screen, text, x, y):
     my_font = pygame.font.Font(None, 30)
@@ -45,6 +46,7 @@ while not done:
 
 
     # joystick stuff
+    p2_a_btn = controller2.a()
     a_btn = controller.a()
     b_btn = controller.b()
     x_btn = controller.x()
@@ -75,6 +77,8 @@ while not done:
     
     if a_btn == 1:
         pygame.draw.ellipse(screen, GREEN, [x + 30, y + 60, 25, 25])
+    elif p2_a_btn == 1:
+        pygame.draw.ellipse(screen, (255, 0, 255), [x + 30, y + 60, 25, 25])
     else:
         pygame.draw.ellipse(screen, GREEN, [x + 30, y + 60, 25, 25], 2)
 
