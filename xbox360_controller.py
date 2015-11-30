@@ -189,7 +189,7 @@ class XBox360Controller:
 
         return (left_stick_x, left_stick_y)
 
-    def right_stick_axes(self):
+    def right_stick_axes(self, inverted=False):
         """
         Returns the x & y axes as a tuple such that
 
@@ -199,8 +199,12 @@ class XBox360Controller:
         Positive values are right and down.
         """
 
-        right_stick_x = self.dead_zone_adjust(self.joystick.get_axis(self.RIGHT_STICK_X))
-        right_stick_y = self.dead_zone_adjust(self.joystick.get_axis(self.RIGHT_STICK_Y))       
+        if inverted:
+            right_stick_x = self.dead_zone_adjust(self.joystick.get_axis(self.RIGHT_STICK_X))
+            right_stick_y = self.dead_zone_adjust(self.joystick.get_axis(self.RIGHT_STICK_Y))
+        else:
+            right_stick_y = self.dead_zone_adjust(self.joystick.get_axis(self.RIGHT_STICK_X))
+            right_stick_x = self.dead_zone_adjust(self.joystick.get_axis(self.RIGHT_STICK_Y))       
             
         return (right_stick_x, right_stick_y)
 
