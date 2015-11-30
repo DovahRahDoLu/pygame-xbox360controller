@@ -45,7 +45,7 @@ while not done:
     back = controller.back()
     start = controller.start()
     lt_stick = controller.left_stick_axes()
-    rt_stick = controller.right_stick_axes()
+    rt_stick = controller.right_stick_axes(inverted=True)
 
     # game logic
     if not playing:
