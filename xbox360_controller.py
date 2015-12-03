@@ -13,6 +13,9 @@ LINUX = 0
 MAC = 1
 WINDOWS = 2
 
+class ControllerNotFoundError(Exception):
+    pass
+
 class XBox360Controller:
     
     def __init__(self, num):
@@ -89,8 +92,12 @@ class XBox360Controller:
             self.RIGHT_STICK_Y = 4
             self.TRIGGERS = 2
 
-        self.joystick = pygame.joystick.Joystick(num)
-        self.joystick.init()
+        try:
+            self.joystick = pygame.joystick.Joystick(num)
+            self.joystick.init()
+        except pygame.error:
+            raise ControllerNotFoundError("Joystick {} Not Found".format(num))
+
         self.dead_zone = 0.15
 
         self.left_trigger_used = False
